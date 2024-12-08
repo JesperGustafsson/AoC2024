@@ -1,4 +1,6 @@
-fn main(input: &str) -> String {
+use std::fs::read_to_string;
+
+fn process(input: String) -> String {
     let lines = input.lines();
     let mut left = vec![];
     let mut right = vec![];
@@ -24,6 +26,11 @@ fn main(input: &str) -> String {
     return res.to_string();
 }
 
+fn main() {
+    let input = read_to_string("./inputs/day-01.txt").unwrap();
+    println!("{}", process(input));
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -35,8 +42,9 @@ mod tests {
 2   5
 1   3
 3   9
-3   3";
-        assert_eq!(main(input), "31");
+3   3"
+            .to_string();
+        assert_eq!(process(input), "31");
     }
 
     #[test]
@@ -1040,7 +1048,8 @@ mod tests {
 55502   72766
 94404   28822
 62772   51158
-69487   20471";
-        assert_eq!(main(input), "23609874");
+69487   20471"
+            .to_string();
+        assert_eq!(process(input), "23609874");
     }
 }

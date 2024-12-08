@@ -1,6 +1,9 @@
+use std::fs::{read_to_string, File};
+use std::io::{self, BufRead};
 use std::iter::zip;
+use std::path::Path;
 
-fn main(input: &str) -> String {
+fn process(input: String) -> String {
     let lines = input.lines();
     let mut left = vec![];
     let mut right = vec![];
@@ -21,6 +24,12 @@ fn main(input: &str) -> String {
     return res.to_string();
 }
 
+fn main() {
+    let input = read_to_string("./inputs/day-01.txt").unwrap();
+    let res = process(input);
+    println!("{}", res);
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -32,8 +41,9 @@ mod tests {
 2   5
 1   3
 3   9
-3   3";
-        assert_eq!(main(input), "11");
+3   3"
+            .to_string();
+        assert_eq!(process(input), "11");
     }
 
     #[test]
@@ -1037,7 +1047,8 @@ mod tests {
 55502   72766
 94404   28822
 62772   51158
-69487   20471";
-        assert_eq!(main(input), "1646452");
+69487   20471"
+            .to_string();
+        assert_eq!(process(input), "1646452");
     }
 }
